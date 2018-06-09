@@ -1,27 +1,29 @@
+import React from 'react';
 import { TabNavigator, StackNavigator, TabView } from 'react-navigation';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { purple, white } from '../utils/colors';
+import { Ionicons } from '@expo/vector-icons';
+import colors from '../utils/colors';
+
+import CreateTask from '../components/app/task/form/create-task';
+import Tasks from '../components/app/task/list';
+import Dashboard from '../components/app/dashboard';
 
 const Tabs = TabNavigator({
   Tasks: {
     screen: Tasks,
     navigationOptions: {
-      tabBarLabel: 'Tarefas',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
-    },
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-list' size={33} color={tintColor} />
+    }
   },
-  AddTask: {
-    screen: AddTask,
+  CreateTask: {
+    screen: CreateTask,
     navigationOptions: {
-      tabBarLabel: 'Adicionar',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
-    },
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-add-circle-outline' size={33} color={tintColor} />
+    }
   },
   Dashboard: {
     screen: Dashboard,
     navigationOptions: {
-      tabBarLabel: 'Painel de Resultados',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-speedometer' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-stats' size={33} color={tintColor} />
     }
   }
 }, {
@@ -29,12 +31,13 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
+    showLabel: false,
     tabBarComponent: TabView.TabBarBottom,
     tabBarPosition: 'bottom',
-    activeTintColor: Platform.OS === 'ios' ? purple : white,
+    activeTintColor: colors.accent.white,
     style: {
-      height: 56,
-      backgroundColor: Platform.OS === 'ios' ? white : purple,
+      height: 50,
+      backgroundColor: colors.secondary.light,
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
@@ -50,15 +53,15 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
   },
-  EntryDetail: {
-    screen: EntryDetail,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      }
-    }
-  }
+  // CreateTask: {
+  //   screen: CreateTask,
+  //   navigationOptions: {
+  //     headerTintColor: '#000',
+  //     headerStyle: {
+  //       backgroundColor:'#000',
+  //     }
+  //   }
+  // }
 });
 
 export default MainNavigator;

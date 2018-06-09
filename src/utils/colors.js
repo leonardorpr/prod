@@ -7,11 +7,12 @@ export default {
   secondary: {
     dark: '#1D2021',
     normal: '#2A2C30',
-    // light: ''
+    light: '#323438'
   },
   accent: {
     green: '#2ECC71',
     red: '#DA493A',
-    orange: '#F39C11'
+    orange: '#F39C11',
+    white: '#FFF'
   }
 }
