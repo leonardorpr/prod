@@ -7,7 +7,7 @@ const Card = ({}) => (
   <View style={style.container}>
     <View style={style.card}/>
     <View style={style.informations}>
-      <View style={style.letter}>
+      <View style={style.task}>
         <Text style={style.titleTask}>Varrer</Text>
       </View>
       <View style={style.time}>

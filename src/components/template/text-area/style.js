@@ -4,7 +4,7 @@ import colors from '../../../utils/colors';
 const style = StyleSheet.create({
   main: {
     textAlign: 'center',
-    height: 50,
+    height: 70,
     width: 300,
     paddingRight: 10,
     paddingLeft: 10,
@@ -12,7 +12,7 @@ const style = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 2,
     borderColor: colors.primary.normal,
-    borderRadius: 25,
+    borderRadius: 35,
     color: colors.primary.light,
     backgroundColor : 'transparent'
   }

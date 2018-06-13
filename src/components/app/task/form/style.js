@@ -13,9 +13,9 @@ const style = StyleSheet.create({
     marginTop: Constants.statusBarHeight + 30
   },
   letter: {
-    color: '#fff',
+    color: colors.accent.white,
     fontWeight: 'bold',
-    fontSize: 15
+    fontSize: 15,
   }
 });
 
