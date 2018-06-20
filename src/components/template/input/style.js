@@ -5,7 +5,7 @@ const style = StyleSheet.create({
   main: {
     textAlign: 'center',
     height: 50,
-    width: 300,
+    width: '95%',
     paddingRight: 10,
     paddingLeft: 10,
     marginTop: 10,

@@ -5,14 +5,20 @@ import {
   REMOVE_TASK,
   GET_TASK,
   LIST_TASKS
-} from '../constants';
+} from '../action-types';
 
 const tasks = (state = initialState, action) => {
   switch(action.type) {
     case ADD_TASK:
       return {
         ...state,
-        ...action.payload
+        tasks: {
+          ...state.tasks,
+          listTasks: [
+            ...state.tasks.listTasks,
+            ...action.payload
+          ]
+        }
       }
     case UPDATE_TASK:
       return {
@@ -32,9 +38,16 @@ const tasks = (state = initialState, action) => {
     case LIST_TASKS:
       return {
         ...state,
-        ...action.payload
+        tasks: {
+          ...state.tasks,
+          listTasks: [
+            ...action.payload
+          ]
+        }
       }
     default:
       return state
   }
 }
+
+export default tasks;

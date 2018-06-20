@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+import { connect } from 'react-redux';
+import { create } from '../../../../actions';
 
 import style from './style';
-
 import Input from '../../../template/input';
-import TextArea from '../../../template/text-area';
+import Button from '../../../template/button';
 
 class CreateTask extends Component {
   constructor(props) {
@@ -14,15 +16,16 @@ class CreateTask extends Component {
       task: {
         name: '',
         description: '',
-        date: new Date()
       }
     }
   }
 
-  setDate = (newDate) => this.setState({ task: { date: newDate } });
+  onInputChange = (field, value) => this.setState((prevState) => ({ task:{ ...prevState.task, [field]: value } }));
 
   render() {
-    const { name, description, date } = this.state.task;
+    const { createTask } = this.props;
+    const { task } = this.state;
+    const { name, description } = task;
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -32,18 +35,29 @@ class CreateTask extends Component {
             <Input
               placeholder='Nome da Tarefa'
               value={name}
-              onChange={value => this.setState({ task: { name: value } })}
+              onChange={value => this.onInputChange('name', value)}
             />
-            <TextArea
+            <Input
               placeholder='Descrição da Tarefa'
               value={description}
-              onChange={value => this.setState({ task: { description: value } })}
+              onChange={value => this.onInputChange('description', value)}
+            />
+            <Button
+              text='Criar Tarefa'
+              nameIcon='ios-list'
+              typeIcon='ionicon'
+              submit={() => createTask(task)}
             />
           </View>
+          <KeyboardSpacer />
         </View>
       </TouchableWithoutFeedback>
     )
   }
 }
 
-export default CreateTask;
+mapDispatchToProps = (dispatch) => ({
+  createTask: (data) => dispatch(create(data))
+});
+
+export default connect(null, mapDispatchToProps)(CreateTask);

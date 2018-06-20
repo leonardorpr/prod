@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import store from './src/store';
-import colors from './src/utils/colors';
 import Navigator from './src/routes/index';
 
 class App extends Component {
@@ -17,7 +15,6 @@ class App extends Component {
             barStyle="light-content"
           />
           <Navigator />
-          <KeyboardSpacer />
         </View>
       </Provider>
     );

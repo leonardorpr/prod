@@ -4,45 +4,30 @@ class BaseService {
 
   // METHODS
   getAll = async (ref) => {
-    let response;
-    let success;
-    let value;
-    let result;
-
     try {
-      response = await firebase.database().ref(ref).on('value', snapshot => {
-        success = true;
-        value = snapshot.val();
-        result = !!response ? Object.keys(response).map(uid => ({ ...response[uid], uid })) : [];
+      const response = await firebase.database().ref(ref).on('value', snapshot => {
+        const value = snapshot.val();
+        const data = !!value ? Object.keys(value).map(uid => ({ ...value[uid], uid })) : [];
+        const success = true;
+
+        return this.serviceResponse({ data, success });
       });
     } catch (e) {
       // DO NOTHING
     }
-
-    const data = result;
-    const errors = null;
-
-    return this.serviceResponse({ data, success, errors });
   }
 
   getById = async (ref) => {
-    let response;
-    let success;
-    let value;
-
     try {
-      response = await firebase.database().ref(ref).on('value', snapshot => {
-        success = true;
-        value = snapshot.val();
+      const response = await firebase.database().ref(ref).on('value', snapshot => {
+        const success = true;
+        const value = snapshot.val();
+
+        return this.serviceResponse({ data, success });
       });
     } catch (e) {
       // DO NOTHING
     }
-
-    const data = value;
-    const errors = null;
-
-    return this.serviceResponse({ data, success, errors });
   }
 
   post = async (ref, obj) => await firebase.database().ref(ref).push(obj);
@@ -54,13 +39,9 @@ class BaseService {
   // MANAGE RESPONSES
   serviceResponse = (response) => {
     if (response.success) {
-      return this.success({ data: response.data });
+      return { data: 'oi', success: true };
     } else {
-      return this.error({
-        data: null,
-        content: null,
-        errors: null
-      });
+      return { data: null, success: false };
     }
   }
 
@@ -72,11 +53,9 @@ class BaseService {
     }
   }
 
-  error = ({ data, content, errors }) => {
+  error = ({ data, content }) => {
     return {
-      errors,
-      error: content,
-      data: data,
+      data: null,
       success: false,
     }
   }

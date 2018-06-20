@@ -34,7 +34,7 @@ const Tabs = TabNavigator({
     showLabel: false,
     tabBarComponent: TabView.TabBarBottom,
     tabBarPosition: 'bottom',
-    activeTintColor: colors.accent.white,
+    activeTintColor: colors.accent.red,
     style: {
       height: 50,
       backgroundColor: colors.secondary.light,
