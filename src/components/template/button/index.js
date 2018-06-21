@@ -7,7 +7,7 @@ import style from './style';
 const SubmitButton = ({ text, submit, nameIcon, typeIcon }) => (
   <View style={style.container}>
     <Button
-      icon={{name:`${nameIcon}`, type:`${typeIcon}`, buttonStyle: style.icon}}
+      icon={nameIcon ? {name:`${nameIcon}`, type:`${typeIcon}`} : null}
       title={text}
       color={colors.accent.white}
       buttonStyle={style.button}

@@ -7,7 +7,7 @@ const style = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.secondary.dark,
   },
-  title: {
+  data: {
     flex: 1,
     alignItems: 'center',
     marginTop: Constants.statusBarHeight + 30
@@ -15,7 +15,8 @@ const style = StyleSheet.create({
   letter: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 15
+    fontSize: 15,
+    marginBottom: 30
   }
 });
 

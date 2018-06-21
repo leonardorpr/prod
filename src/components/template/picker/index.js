@@ -1,29 +1,47 @@
+import React from 'react';
 import DatePicker from 'react-native-datepicker';
+import colors from '../../../utils/colors';
+import style from './style';
 
-const Picker = ({}) => (
+const Picker = ({ value, onChange }) => (
   <DatePicker
-    style={{width: 200}}
-    date={date}
+    style={style.input}
+    date={value}
     mode="date"
-    placeholder="select date"
-    format="YYYY-MM-DD"
-    minDate="2018-05-01"
-    maxDate="2020-06-01"
-    confirmBtnText="Confirm"
-    cancelBtnText="Cancel"
+    placeholder='Selecione a Data da Tarefa'
+    format='DD-MM-YYYY'
+    minDate='01-01-2018'
+    maxDate='01-01-2020'
+    locale={'pt_BR'}
+    showIcon={false}
+    confirmBtnText='Confirmar'
+    cancelBtnText='Cancelar'
+    onDateChange={(date) => onChange(date)}
     customStyles={{
-      dateIcon: {
-        position: 'absolute',
-        left: 0,
-        top: 4,
-        marginLeft: 0
-      },
       dateInput: {
-        marginLeft: 36
+        textAlign: 'center',
+        height: 50,
+        width: '95%',
+        paddingRight: 10,
+        paddingLeft: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        borderWidth: 2,
+        borderColor: colors.primary.normal,
+        borderRadius: 25,
+        color: colors.primary.light,
+        backgroundColor : 'transparent'
+      },
+      placeholderText: {
+        color: colors.primary.normal
+      },
+      dateText: {
+        color: colors.primary.normal
+      },
+      btnTextConfirm: {
+        color: colors.accent.red
       }
-      // ... You can check the source to find the other keys.
     }}
-    onDateChange={(date) => {this.setState({ task: { date } })}}
   />
 )
 

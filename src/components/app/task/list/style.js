@@ -5,18 +5,36 @@ import colors from '../../../../utils/colors';
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.secondary.dark,
+    backgroundColor: colors.secondary.normal,
   },
-  title: {
+  tasks: {
     flex: 1,
     alignItems: 'center',
-    marginTop: Constants.statusBarHeight + 30
+    justifyContent: 'center'
   },
-  letter: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 15
-  }
+  calendar: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight + 10
+  },
+  emptyDate: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  phrase: {
+    color: colors.accent.white,
+    textAlign: 'center',
+    paddingBottom: 5,
+    paddingTop: 5,
+    paddingRight: 5,
+    paddingLeft: 5
+  },
+  emptyData: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 30,
+    marginRight: 30
+  },
 });
 
 export default style;

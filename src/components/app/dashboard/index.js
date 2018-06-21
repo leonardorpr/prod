@@ -6,8 +6,8 @@ class CreateTask extends Component {
   render() {
     return (
       <View style={style.container}>
-        <View style={style.title}>
-          <Text style={style.letter}>Dashboard</Text>
+        <View style={style.data}>
+          <Text style={style.letter}>Painel de Resultados</Text>
         </View>
       </View>
     )
