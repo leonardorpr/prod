@@ -8,11 +8,11 @@ import Card from '../../../template/card';
 import Calendar from '../../../template/calendar';
 
 class ListTask extends Component {
-  UNSAFE_componentWillMount = async () => await this.props.listTasks();
+  componentDidMount = async () => await this.props.listTasks();
 
   renderItem = (task) => (
       <View style={style.tasks}>
-        <Card key={task} name={task.text} time='20 minutos' />
+        <Card key={task} name={task.text} time='20 minutos' navigation={() => this.props.navigation.navigate('TaskDetail', task)}/>
       </View>
   )
 
@@ -31,19 +31,13 @@ class ListTask extends Component {
   rowHasChanged = (firstTask, secondTask) => firstTask.text !== secondTask.text;
 
   render() {
+    const { calendar } = this.props;
+
     return (
       <View style={style.container}>
         <View style={style.calendar}>
           <Calendar
-            tasks={
-              {
-                '2018-05-22': [{text: 'item 1 - any js object'}],
-                '2018-05-22': [{text: 'item 1 - any js object'}],
-                '2018-05-23': [{text: 'item 2 - any js object'}],
-                '2018-05-24': [],
-                '2018-05-25': [{text: 'item 3 - any js object'},{text: 'any js object'}],
-              }
-            }
+            tasks={calendar}
             rowHasChanged={this.rowHasChanged}
             renderItem={this.renderItem}
             renderEmptyDate={this.emptyDate}
@@ -55,7 +49,7 @@ class ListTask extends Component {
   }
 }
 
-mapStateToProps = ({ tasks }) => ({ list: tasks.listTasks });
+mapStateToProps = ({ tasks }) => ({ list: tasks.listTasks, calendar: tasks.calendar });
 
 mapDispatchToProps = dispatch => ({
   listTasks: () => dispatch(list())

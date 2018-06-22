@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import style from './style';
 import Input from '../../../template/input';
@@ -14,8 +14,7 @@ class TaskDetail extends Component {
     this.state = {
       edit: false,
       task: {
-        name: '',
-        description: '',
+        description: this.props.navigation.state.params.text,
         date: '',
         time: 0,
       },
@@ -24,7 +23,7 @@ class TaskDetail extends Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      title: 'Tarefa',
+      title: navigation.state.params.text,
       //headerRight:
     }
   }
@@ -38,31 +37,34 @@ class TaskDetail extends Component {
   render() {
     const { createTask } = this.props;
     const { task, edit } = this.state;
-    const { name, description, date, time } = task;
+    const { description, date, time } = task;
 
     return (
-      <View style={style.container}>
-        <View style={style.form}>
-          <Input
-            placeholder='Descrição da Tarefa'
-            value={description}
-            onChange={value => this.onInputChange('description', value)}
-          />
-          <DatePicker
-            value={date}
-            onChange={(value) => this.onDateChange(value)}
-          />
-          <TimePicker
-            value={time}
-            onChange={value => this.onInputChange('time', value)}
-          />
-          <Button
-            text={edit ? 'Salvar Tarefa' : 'Concluir Tarefa'}
-            styles={style.button}
-            //submit={() => createTask(task)}
-          />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={style.container}>
+          <View style={style.form}>
+            <Input
+              placeholder='Descrição da Tarefa'
+              value={description}
+              onChange={(value) => this.onInputChange('description', value)}
+              styles={style.input}
+            />
+            <DatePicker
+              value={date}
+              onChange={(value) => this.onDateChange(value)}
+            />
+            <TimePicker
+              value={time}
+              onChange={(value) => this.onInputChange('time', value)}
+            />
+            <Button
+              text={edit ? 'Salvar Tarefa' : 'Concluir Tarefa'}
+              styles={style.button}
+              //submit={() => createTask(task)}
+            />
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     )
   }
 }

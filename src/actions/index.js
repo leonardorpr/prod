@@ -28,10 +28,10 @@ export const getTask = (data) => ({
   payload: data
 });
 
-export const listTasks = (data) => ({
+export const listTasks = (data, value) => ({
   type: LIST_TASKS,
   payload: data
-})
+});
 
 export const create = (params) => async (dispatch) => {
   await TaskService.createTask(params);

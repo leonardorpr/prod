@@ -3,7 +3,7 @@ import { StyleSheet, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 
 import store from './src/store';
-import { MainNavigator, SignOut, Detail } from './src/routes';
+import { MainNavigator } from './src/routes';
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
             backgroundColor="white"
             barStyle="light-content"
           />
-          <Detail />
+          <MainNavigator />
         </View>
       </Provider>
     );

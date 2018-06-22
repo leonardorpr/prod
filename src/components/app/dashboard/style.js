@@ -8,8 +8,9 @@ const style = StyleSheet.create({
     backgroundColor: colors.secondary.dark,
   },
   data: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight + 30
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: Constants.statusBarHeight + 30,
   },
   letter: {
     textAlign: 'center',
@@ -17,6 +18,9 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     marginBottom: 30
+  },
+  metric: {
+    marginTop: 200
   }
 });
 

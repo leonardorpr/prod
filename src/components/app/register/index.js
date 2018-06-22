@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, TouchableWithoutFeedback, Keyboard, Image, Text } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Keyboard, Image } from 'react-native';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { onSignIn } from '../../../core/service/auth.service';
 import * as firebase from 'firebase';
 
@@ -7,20 +8,23 @@ import style from './style';
 import Input from '../../template/input';
 import Button from '../../template/button';
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       message: '',
-      email: '',
-      password: ''
+      register: {
+        name: '',
+        email: '',
+        password: ''
+      }
     }
   }
 
-  login = async (email, password) => {
+  createUser = async (email, password) => {
     try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
       const userID = firebase.auth().currentUser.uid;
       onSignIn(userID);
       this.props.navigation.navigate('Home');
@@ -29,18 +33,24 @@ class Login extends Component {
     }
   }
 
-  onInputChange = (field, value) => this.setState({ [field]: value });
+  onInputChange = (field, value) => this.setState((prevState) => ({ register:{ ...prevState.register, [field]: value } }));
 
   render() {
-    const { email, password, message } = this.state;
+    const { register, message } = this.state;
+    const { name, email, password } = register;
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={style.container}>
-          <View style={style.data}>
+          <View style={style.form}>
             <Image
               style={style.logo}
               source={require('../../../utils/brands/logo-login.png')}
+            />
+            <Input
+              placeholder='Nome'
+              value={name}
+              onChange={value => this.onInputChange('name', value)}
             />
             <Input
               placeholder='E-mail'
@@ -53,16 +63,12 @@ class Login extends Component {
               value={password}
               onChange={value => this.onInputChange('password', value)}
             />
+            <Button
+              text='Cadastrar'
+              submit={() => this.createUser(email, password)}
+            />
             <Text style={style.message}>{message}</Text>
-            <Button
-              text='Entrar'
-              submit={() => this.login(email, password)}
-            />
-            <Button
-              text='Quero me cadastar!'
-              styles={style.socialButtons}
-              submit={() => this.props.navigation.navigate('Register')}
-            />
+            <KeyboardSpacer/>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -70,4 +76,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;

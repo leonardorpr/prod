@@ -1,9 +1,10 @@
 import React from 'react';
-import { TabNavigator, StackNavigator, TabView, HeaderBackButton } from 'react-navigation';
+import { TabNavigator, StackNavigator, TabView } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import colors from '../utils/colors';
 
 import Login from '../components/app/login';
+import Register from '../components/app/register';
 import CreateTask from '../components/app/task/form';
 import TaskDetail from '../components/app/task/view';
 import Tasks from '../components/app/task/list';
@@ -54,7 +55,32 @@ const Tabs = TabNavigator({
 export const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
-  }
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      header: null
+    },
+  },
+  TaskDetail: {
+    screen: TaskDetail,
+    navigationOptions: {
+      headerTintColor: colors.accent.white,
+      headerStyle: {
+        backgroundColor: colors.secondary.light,
+      },
+    }
+  },
+  Register: {
+    screen: Register,
+    navigationOptions: {
+      title: 'Cadastro',
+      headerTintColor: colors.accent.white,
+      headerStyle: {
+        backgroundColor: colors.secondary.light,
+      },
+    }
+  },
 });
 
 export const SignOut = StackNavigator({
@@ -63,21 +89,20 @@ export const SignOut = StackNavigator({
     navigationOptions: {
       header: null
     },
-  }
-});
-
-export const Detail = StackNavigator({
-  TaskDetail: {
-    screen: TaskDetail,
+  },
+  Register: {
+    screen: Register,
     navigationOptions: {
-      headerTintColor: colors.accent.red,
+      title: 'Cadastro',
+      headerTintColor: colors.accent.white,
       headerStyle: {
-        backgroundColor: colors.accent.orange,
+        backgroundColor: colors.secondary.light,
       },
-      //headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />
     }
   }
+
 });
+
 
 export const RootNavigator = (logged = false) => {
   return (
@@ -88,7 +113,7 @@ export const RootNavigator = (logged = false) => {
     {
       headerMode: 'none',
       mode: 'modal',
-      initialRouteName: logged ? 'SignOut' : 'Main',
+      initialRouteName: logged ? 'Main' : 'SignOut',
       navigationOptions: {
         gesturesEnabled: false
       }

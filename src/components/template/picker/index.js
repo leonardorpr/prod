@@ -9,9 +9,9 @@ const Picker = ({ value, onChange }) => (
     date={value}
     mode="date"
     placeholder='Selecione a Data da Tarefa'
-    format='DD-MM-YYYY'
-    minDate='01-01-2018'
-    maxDate='01-01-2020'
+    format='YYYY-MM-DD'
+    minDate='2018-01-01'
+    maxDate='2025-01-01'
     locale={'pt_BR'}
     showIcon={false}
     confirmBtnText='Confirmar'

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import Moment from 'moment';
 import { connect } from 'react-redux';
 import { create } from '../../../../actions';
 

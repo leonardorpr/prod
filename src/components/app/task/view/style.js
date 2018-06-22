@@ -11,6 +11,9 @@ const style = StyleSheet.create({
   },
   button: {
     marginTop: 60
+  },
+  input: {
+    marginTop: 20
   }
 });
 

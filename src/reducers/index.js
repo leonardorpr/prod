@@ -7,7 +7,7 @@ import {
   LIST_TASKS
 } from '../action-types';
 
-const tasks = (state = initialState, action) => {
+const prod = (state = initialState, action) => {
   switch(action.type) {
     case ADD_TASK:
       return {
@@ -36,6 +36,18 @@ const tasks = (state = initialState, action) => {
         ...action.payload
       }
     case LIST_TASKS:
+      const taskCalendar = {};
+      const dates = Object.entries(state.tasks.calendar);
+
+      const result = dates.filter((date, index) => date[0] === action.payload[index]);
+      console.log(result)
+      // action.payload.forEach(tasks => {
+      //   if(tasks.date === state.tasks.calendar[tasks.date]) {
+      //     taskCalendar[task.date] = [...tasks];
+      //     console.log('task calendar', taskCalendar);
+      //   }
+      // });
+
       return {
         ...state,
         tasks: {
@@ -50,4 +62,4 @@ const tasks = (state = initialState, action) => {
   }
 }
 
-export default tasks;
+export default prod;

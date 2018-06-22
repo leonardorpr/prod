@@ -16,29 +16,29 @@ const style = StyleSheet.create({
     shadowRadius: 3,
     shadowOpacity: 1
   },
-  card: {
-    position: 'absolute',
-    width: '15%',
-    height: 75,
-    borderTopStartRadius: 15,
-    borderBottomStartRadius: 15,
-    backgroundColor: colors.accent.red
-  },
   informations: {
-    height: 75,
-    width: '85%',
+    height: 150,
+    width: '95%',
     borderTopEndRadius: 5,
     borderBottomEndRadius: 5,
     backgroundColor: colors.secondary.normal,
     marginLeft: '2%'
   },
   task: {
-    flex: 1,
-    alignItems: 'center',
+    marginTop: 10
+  },
+  value: {
     justifyContent: 'center',
-    marginTop: 25
+    marginTop: 30
+  },
+  titleValue: {
+    fontSize: 40,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: colors.accent.red
   },
   titleTask: {
+    textAlign: 'center',
     fontWeight: 'bold',
     color: colors.accent.white
   }

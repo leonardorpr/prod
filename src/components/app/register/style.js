@@ -7,7 +7,7 @@ const style = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.secondary.dark,
   },
-  data: {
+  form: {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: Constants.statusBarHeight
