@@ -9,11 +9,11 @@ const style = StyleSheet.create({
   },
   data: {
     flex: 1,
-    alignItems: 'center',
     marginTop: Constants.statusBarHeight + 30
   },
   letter: {
-    color: '#fff',
+    textAlign: 'center',
+    color: colors.accent.white,
     fontWeight: 'bold',
     fontSize: 15,
     marginBottom: 30

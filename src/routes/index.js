@@ -1,9 +1,11 @@
 import React from 'react';
-import { TabNavigator, StackNavigator, TabView } from 'react-navigation';
+import { TabNavigator, StackNavigator, TabView, HeaderBackButton } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import colors from '../utils/colors';
 
-import CreateTask from '../components/app/task/form/create-task';
+import Login from '../components/app/login';
+import CreateTask from '../components/app/task/form';
+import TaskDetail from '../components/app/task/view';
 import Tasks from '../components/app/task/list';
 import Dashboard from '../components/app/dashboard';
 
@@ -49,19 +51,47 @@ const Tabs = TabNavigator({
   }
 });
 
-const MainNavigator = StackNavigator({
+export const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
-  },
-  // CreateTask: {
-  //   screen: CreateTask,
-  //   navigationOptions: {
-  //     headerTintColor: '#000',
-  //     headerStyle: {
-  //       backgroundColor:'#000',
-  //     }
-  //   }
-  // }
+  }
 });
 
-export default MainNavigator;
+export const SignOut = StackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      header: null
+    },
+  }
+});
+
+export const Detail = StackNavigator({
+  TaskDetail: {
+    screen: TaskDetail,
+    navigationOptions: {
+      headerTintColor: colors.accent.red,
+      headerStyle: {
+        backgroundColor: colors.accent.orange,
+      },
+      //headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />
+    }
+  }
+});
+
+export const RootNavigator = (logged = false) => {
+  return (
+    StackNavigator({
+      SignOut: { screen: SignOut },
+      Main: { screen: MainNavigator }
+    },
+    {
+      headerMode: 'none',
+      mode: 'modal',
+      initialRouteName: logged ? 'SignOut' : 'Main',
+      navigationOptions: {
+        gesturesEnabled: false
+      }
+    })
+  )
+}

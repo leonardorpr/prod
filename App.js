@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import moment from 'moment';
-import 'moment/locale/pt-br.js';
 
 import store from './src/store';
-import Navigator from './src/routes/index';
-
-moment.locale('pt-br');
+import { MainNavigator, SignOut, Detail } from './src/routes';
 
 class App extends Component {
   render() {
@@ -18,7 +14,7 @@ class App extends Component {
             backgroundColor="white"
             barStyle="light-content"
           />
-          <Navigator />
+          <Detail />
         </View>
       </Provider>
     );
@@ -26,6 +22,7 @@ class App extends Component {
 }
 
 export default App;
+
 console.disableYellowBox = true;
 
 const styles = StyleSheet.create({

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Moment from 'moment';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { connect } from 'react-redux';
 import { create } from '../../../../actions';
 
@@ -60,12 +59,11 @@ class CreateTask extends Component {
               value={time}
               onChange={value => this.onInputChange('time', value)}
             />
-              <Button
-                text='Criar Tarefa'
-                submit={() => createTask(task)}
-              />
+            <Button
+              text='Criar Tarefa'
+              submit={() => createTask(task)}
+            />
           </View>
-          <KeyboardSpacer />
         </View>
       </TouchableWithoutFeedback>
     )

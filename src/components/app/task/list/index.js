@@ -8,7 +8,7 @@ import Card from '../../../template/card';
 import Calendar from '../../../template/calendar';
 
 class ListTask extends Component {
-  componentDidMount = async () => await this.props.listTasks();
+  UNSAFE_componentWillMount = async () => await this.props.listTasks();
 
   renderItem = (task) => (
       <View style={style.tasks}>

@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import style from './style';
+import Chart from '../../template/chart';
 
-class CreateTask extends Component {
+import style from './style';
+import MetricCard from '../../template/metric-card';
+
+class Dashboard extends Component {
   render() {
     return (
       <View style={style.container}>
         <View style={style.data}>
-          <Text style={style.letter}>Painel de Resultados</Text>
+          <Text style={style.letter}>Seus Resultados</Text>
+          <Chart />
+          <MetricCard/>
         </View>
       </View>
     )
   }
 }
 
-export default CreateTask;
+export default Dashboard;

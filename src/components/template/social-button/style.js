@@ -3,10 +3,11 @@ import { StyleSheet } from 'react-native';
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
+    width: '95%',
     marginTop: 20,
     marginBottom: 20,
-    paddingBottom:30
+    paddingTop: 20,
+    paddingBottom: 20
   },
   button: {
     height: 50
