@@ -22,6 +22,14 @@ const style = StyleSheet.create({
     borderBottomStartRadius: 15,
     backgroundColor: colors.accent.red
   },
+  doneCard: {
+    position: 'absolute',
+    width: '2%',
+    height: 75,
+    borderTopStartRadius: 15,
+    borderBottomStartRadius: 15,
+    backgroundColor: colors.accent.green
+  },
   informations: {
     height: 75,
     width: '98%',

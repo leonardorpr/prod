@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import Swipeout from 'react-native-swipeout';
 import style from './style';
 
-const Card = ({ name, time, navigation }) => (
+const Card = ({ name, time, navigation, done }) => (
   <View style={style.container}>
     <TouchableOpacity onPress={navigation}>
-      <View style={style.card}/>
+      <View style={!done ? style.card : style.doneCard}/>
       <View style={style.informations}>
         <View style={style.task}>
           <Text style={style.titleTask}>{name}</Text>

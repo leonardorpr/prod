@@ -21,6 +21,7 @@ class Dashboard extends Component {
       const data = !!value ? Object.keys(value).map(uid => ({ ...value[uid], uid })) : [];
 
       const completed = data.filter((task) => task.done === 'true');
+      console.log(completed)
       this.setState({ completedTasks: completed.length, totalTasks: data.length });
     });
   }

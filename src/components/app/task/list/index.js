@@ -35,7 +35,7 @@ class ListTask extends Component {
 
   renderItem = (task) => (
       <View style={style.tasks}>
-        <Card key={task.uid} name={task.name} time={`${task.time} minutos`} navigation={() => this.props.navigation.navigate('TaskDetail', task)}/>
+        <Card key={task.uid} name={task.name} time={`${task.time} minutos`} done={task.done} navigation={() => this.props.navigation.navigate('TaskDetail', task)}/>
       </View>
   )
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { format } from 'date-fns';
 import firebase from '../../../../core/config';
 
 import style from './style';
@@ -19,7 +20,7 @@ class CreateTask extends Component {
         date: '',
         time: 0,
         done: false,
-      },
+      }
     }
   }
 
@@ -32,7 +33,7 @@ class CreateTask extends Component {
   }
 
   render() {
-    const { task } = this.state;
+    const { task, formattedDate } = this.state;
     const { name, description, date, time } = task;
 
     return (
