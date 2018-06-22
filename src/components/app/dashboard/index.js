@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { connect } from 'react-redux';
+import firebase from '../../../core/config';
 
 import style from './style';
 import MetricCard from '../../template/metric-card';
@@ -10,18 +10,23 @@ class Dashboard extends Component {
     super(props);
 
     this.state = {
-      totalTasks: this.props.list.length,
+      totalTasks: 0,
       completedTasks: 0
     }
   }
 
-  UNSAFE_componentWillMount = () => {
-    const completed = this.props.list.filter((task) => task.done === 'true');
-    this.setState({ completedTasks: completed.length });
+  componentDidMount = () => {
+    firebase.database().ref('tasks').on('value', snapshot => {
+      const value = snapshot.val();
+      const data = !!value ? Object.keys(value).map(uid => ({ ...value[uid], uid })) : [];
+
+      const completed = data.filter((task) => task.done === 'true');
+      this.setState({ completedTasks: completed.length, totalTasks: data.length });
+    });
   }
 
   render() {
-    const { totalTasks, completedTasks } = this.state
+    const { totalTasks, completedTasks, list } = this.state;
 
     return (
       <View style={style.container}>
@@ -35,6 +40,4 @@ class Dashboard extends Component {
   }
 }
 
-mapStateToProps = ({ tasks }) => ({ list: tasks.listTasks });
-
-export default connect(mapStateToProps, null)(Dashboard);
+export default Dashboard;

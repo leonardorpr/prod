@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { connect } from 'react-redux';
-import { create } from '../../../../actions';
+import firebase from '../../../../core/config';
 
 import style from './style';
 import Input from '../../../template/input';
@@ -19,20 +18,21 @@ class CreateTask extends Component {
         description: '',
         date: '',
         time: 0,
+        done: false,
       },
-      formatDate: '',
     }
   }
 
   onInputChange = (field, value) => this.setState((prevState) => ({ task:{ ...prevState.task, [field]: value } }));
 
-  onDateChange = (value) => {
-    this.setState((prevState) => ({ task:{ ...prevState.task, date: value } }));
+  create = async (data) => {
+    await firebase.database().ref('tasks').push(data);
+    this.props.navigation.navigate('Tasks');
+    this.setState({ task: { name: '', description: '', date: '', time: 0, } });
   }
 
   render() {
-    const { createTask } = this.props;
-    const { task, formatDate } = this.state;
+    const { task } = this.state;
     const { name, description, date, time } = task;
 
     return (
@@ -52,7 +52,7 @@ class CreateTask extends Component {
             />
             <DatePicker
               value={date}
-              onChange={(value) => this.onDateChange(value)}
+              onChange={(value) => this.onInputChange('date', value)}
             />
             <TimePicker
               value={time}
@@ -60,7 +60,7 @@ class CreateTask extends Component {
             />
             <Button
               text='Criar Tarefa'
-              submit={() => createTask(task)}
+              submit={() => this.create(task)}
             />
           </View>
         </View>
@@ -69,8 +69,4 @@ class CreateTask extends Component {
   }
 }
 
-mapDispatchToProps = (dispatch) => ({
-  createTask: (data) => dispatch(create(data))
-});
-
-export default connect(null, mapDispatchToProps)(CreateTask);
+export default CreateTask;
