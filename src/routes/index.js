@@ -53,14 +53,14 @@ const Tabs = TabNavigator({
 });
 
 export const MainNavigator = StackNavigator({
-  Home: {
-    screen: Tabs,
-  },
   Login: {
     screen: Login,
     navigationOptions: {
       header: null
     },
+  },
+  Home: {
+    screen: Tabs,
   },
   TaskDetail: {
     screen: TaskDetail,

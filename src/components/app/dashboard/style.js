@@ -21,6 +21,9 @@ const style = StyleSheet.create({
   },
   metric: {
     marginTop: 200
+  },
+  button: {
+    marginTop: 180
   }
 });
 

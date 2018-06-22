@@ -28,12 +28,18 @@ class TaskDetail extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.navigation.setParams({
+      deleteTask: this.deleteTask,
+    });
+  }
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.state.params.name,
       headerRight: (
         <HeaderButtons IconComponent={Ionicons} OverflowIcon={<Ionicons name="ios-more" size={23} color="blue" />} iconSize={23} color={colors.accent.white}>
-          <HeaderButtons.Item title="remove" iconName="ios-trash" onPress={() => this.deleteTask()} />
+          <HeaderButtons.Item title="remove" iconName="ios-trash" onPress={() => navigation.state.params.deleteTask()} />
         </HeaderButtons>
       )
     }

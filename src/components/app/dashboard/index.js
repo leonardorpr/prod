@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import firebase from '../../../core/config';
+import * as frb from 'firebase';
 
 import style from './style';
 import MetricCard from '../../template/metric-card';
+import Button from '../../template/button';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -20,10 +22,21 @@ class Dashboard extends Component {
       const value = snapshot.val();
       const data = !!value ? Object.keys(value).map(uid => ({ ...value[uid], uid })) : [];
 
-      const completed = data.filter((task) => task.done === 'true');
-      console.log(completed)
-      this.setState({ completedTasks: completed.length, totalTasks: data.length });
+      let count = 0;
+      const completed = data.forEach((task) => {
+        if(task.done) {
+          count++;
+        }
+        return count;
+      })
+
+      this.setState({ completedTasks: count, totalTasks: data.length });
     });
+  }
+
+  signUp = () => {
+    this.props.navigation.navigate('Login');
+    frb.auth().signOut();
   }
 
   render() {
@@ -35,6 +48,7 @@ class Dashboard extends Component {
           <Text style={style.letter}>Seus Resultados</Text>
           <MetricCard name='Total de Tarefas' value={totalTasks} />
           <MetricCard name='Tarefas Concluidas' value={completedTasks} styles={style.metric} />
+          <Button text='Sair da Conta' submit={() => this.signUp()} styles={style.button}/>
         </View>
       </View>
     )
